@@ -1,0 +1,83 @@
+html{
+    height: 100%;
+    margin: 0;
+    font-family: "Red Hat Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log-in{
+    padding-top: 1%;
+    max-width: 400px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px;
+    border: solid 8px #78C4CE;
+}
+.log-in-title{
+    font-size: x-large;
+    text-align: center;
+}
+.log-in > *{
+    margin: 2% 10%;
+}
+.input-icon{
+    display: flex;
+}
+.text-field{
+    position: relative;
+    border: none;
+    border-bottom: solid 1px;
+    width: 100%;
+}
+.text-field:hover{
+    border-color: blue;
+}
+.text-field:focus {
+    border-color: darkblue; /* Cambia el color del borde al azul */
+    outline: none; /* Quita el borde por defecto */
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.submit-login {
+   font-size: 16px;
+    width: 50%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    justify-self: center;
+    align-self: center;
+}
+
+.submit-login:hover {
+    background-color: #0056b3;
+}
+
