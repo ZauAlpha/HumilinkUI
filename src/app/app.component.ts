@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ApiService } from './services/api.service';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +13,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'HumilinkUI';
+  
+  constructor() {}
 }

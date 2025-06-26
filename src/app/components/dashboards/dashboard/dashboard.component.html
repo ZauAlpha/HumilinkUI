@@ -1,0 +1,60 @@
+<div class="self-start ml-4 mt-4">
+    <h3 class="text-3xl">Tus links</h3>
+</div>
+@if (loading$ | async) {
+<p>Loading</p>
+}
+@else {
+<table class="w-full table-auto text-left border-separate border-spacing-y-2">
+    <tr>
+
+        <th>Id</th>
+        <th>Humi</th>
+        <th>Pagina</th>
+        <th>Clicks</th>
+        <th></th>
+    </tr>
+    @for (url of urls$ | async; track url.id) {
+    <tr>
+
+        <td>{{url.id}}</td>
+        <td>{{url.humiLink}}</td>
+        <td>{{url.originalUrl}}</td>
+        <td>{{url.totalClicks}}</td>
+        <td class="text-center">
+            <button class="text-gray-500 hover:text-gray-800 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
+        </td>
+    </tr>
+
+    }
+</table>
+}
+
+
+
+
+
+<!-----
+<tr>
+
+    <td class="font-semibold text-gray-800">Conferencia UX</td>
+    <td class="text-blue-600 underline cursor-pointer">humi.ly/uxconf</td>
+    <td class="text-gray-600">https://evento.com/ux2025</td>
+    <td class="text-center">67</td>
+    <td class="text-center">
+        <button class="text-gray-500 hover:text-gray-800 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </button>
+    </td>
+</tr>
+-->
