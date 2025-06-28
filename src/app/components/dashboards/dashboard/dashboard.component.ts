@@ -14,7 +14,25 @@ import { BehaviorSubject, startWith } from 'rxjs';
 export class DashboardComponent implements OnInit {
   private apiService: ApiService = inject(ApiService);
   urls$ = this.apiService.humis$.pipe(startWith(null));
+  copiedId: number | null = null;
   loading$ = new BehaviorSubject(true);
+  copyToClipboard(index: number) {
+    this.urls$.subscribe((urls) => {
+      if (!urls || index < 0 || index >= urls.length) {
+        console.warn(
+          'No se puede copiar: urls es null o el índice es inválido'
+        );
+        return;
+      }
+      const url = urls[index];
+      navigator.clipboard.writeText(url.humiLink).then(() => {
+        this.copiedId = index;
+        setTimeout(() => {
+          this.copiedId = null;
+        }, 2000); // mensaje visible por 2 segundos
+      });
+    });
+  }
 
   ngOnInit(): void {
     this.apiService.getHumis().subscribe({

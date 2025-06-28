@@ -19,9 +19,18 @@ export class ApiService {
       .get<HumisRowResponse[]>(url)
       .pipe(tap((urls) => this.humisSubject.next(urls)));
   }
-  addHumi(newHumi: HumisRowResponse) {
-    const currentUrls = this.humisSubject.value; // Obtiene valor actual
-    this.humisSubject.next([...currentUrls, newHumi]); // Emite nuevo array
+  addHumi(newHumiUrl: string) {
+    const url = `${this.apiUrl}/api/humi`;
+    const body = { originalURL: newHumiUrl };
+    this.http.post(url, body).subscribe({
+      next: () => {
+        // Una vez que el POST se completa, se vuelve a obtener la lista actualizada
+        this.getHumis().subscribe();
+      },
+      error: (err) => {
+        console.error('Error al agregar Humi:', err);
+      },
+    });
   }
   getCurrentHumis(): HumisRowResponse[] {
     return this.humisSubject.value;
