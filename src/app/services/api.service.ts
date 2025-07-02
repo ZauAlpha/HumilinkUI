@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HumisRowResponse } from '../model/HumisRowResponse';
-import { NewHumi } from '../model/NewHumi';
 
 @Injectable({
   providedIn: 'root',
@@ -19,18 +18,19 @@ export class ApiService {
       .get<HumisRowResponse[]>(url)
       .pipe(tap((urls) => this.humisSubject.next(urls)));
   }
-  addHumi(newHumiUrl: string) {
+  addHumi(newHumiUrl: string, title: String) {
     const url = `${this.apiUrl}/api/humi`;
-    const body = { originalURL: newHumiUrl };
-    this.http.post(url, body).subscribe({
+    const body = { title: title, originalURL: newHumiUrl };
+    const response = this.http.post(url, body);
+    response.subscribe({
       next: () => {
-        // Una vez que el POST se completa, se vuelve a obtener la lista actualizada
         this.getHumis().subscribe();
       },
       error: (err) => {
         console.error('Error al agregar Humi:', err);
       },
     });
+    return response;
   }
   getCurrentHumis(): HumisRowResponse[] {
     return this.humisSubject.value;

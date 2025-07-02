@@ -3,4 +3,5 @@ export interface HumisRowResponse {
   originalUrl: string;
   humiLink: string;
   totalClicks: number;
+  title: string;
 }

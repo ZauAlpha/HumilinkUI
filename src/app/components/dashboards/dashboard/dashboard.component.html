@@ -1,6 +1,3 @@
-<div class="self-center mt-4">
-    <h3 class="text-3xl">Tus links</h3>
-</div>
 @if (loading$ | async) {
 <div
     class="rounded-2xl bg-gradient-to-tr from-[#6fafee] to-[#73c993] self-center p-16 shadow-lg inline-flex items-center">
@@ -15,18 +12,19 @@
 
 }
 @else {
-<table class="table-auto text-center mx-5 mt-5">
+<table class="table-fixed text-center mx-5 mt-5">
     <tr class="bg-slate-200 rounded-md text-gray-500 shadow-sm ">
-        <th class="bg-slate-200 font-normal rounded-s-md"></th>
-        <th class="font-normal ">Humi
-        </th>
-        <th class="font-normal">Page</th>
-        <th class="font-normal">Clicks</th>
-        <th class="bg-slate-200 rounded-e-md"></th>
+        <th class="bg-slate-200 font-normal rounded-s-md w-8"></th>
+        <th class="font-normal w-1/5">Title</th>
+        <th class="font-normal w-1/3">Humi</th>
+        <th class="font-normal w-48">Page</th>
+        <th class="font-normal w-8">Clicks</th>
+        <th class="bg-slate-200 w-8 rounded-e-md"></th>
     </tr>
     @for (url of urls$ | async; track $index) {
-    <tr class="text-gray-800 font-medium border-b">
+    <tr class="text-gray-800 font-medium border-b odd:bg-gray-100">
         <td class="py-2">{{$index+1}}</td>
+        <td class="py-2">{{url.title}}</td>
         <td class="py-2 ">
             <a class="inline-block text-blue-600 transition-all duration-75 hover:text-blue-900 hover:scale-105 active:scale-90 active:text-yellow-500"
                 href="{{url.humiLink}}">{{url.humiLink}}</a>
@@ -51,9 +49,12 @@
                 }
             </button>
         </td>
-        <td class="py-2"><a
-                class="inline-block text-blue-600 transition-all duration-75 hover:text-blue-900 hover:scale-105 active:scale-90 active:text-yellow-500"
-                href="{{url.originalUrl}}">{{url.originalUrl}}</a></td>
+        <td class="py-2 px-2 w-48 max-w-48">
+            <div class="truncate">
+                <a class="truncate text-blue-600 transition-all duration-75 hover:text-blue-900 hover:scale-105 active:scale-90 active:text-yellow-500"
+                    href="{{url.originalUrl}}">{{url.originalUrl}}</a>
+            </div>
+        </td>
         <td class="py-2">{{url.totalClicks}}</td>
         <td class="text-center py-2">
             <button class="text-gray-500 hover:text-gray-800 transition">
@@ -69,26 +70,3 @@
     }
 </table>
 }
-
-
-
-
-
-<!-----
-<tr>
-
-    <td class="font-semibold text-gray-800">Conferencia UX</td>
-    <td class="text-blue-600 underline cursor-pointer">humi.ly/uxconf</td>
-    <td class="text-gray-600">https://evento.com/ux2025</td>
-    <td class="text-center">67</td>
-    <td class="text-center">
-        <button class="text-gray-500 hover:text-gray-800 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        </button>
-    </td>
-</tr>
--->

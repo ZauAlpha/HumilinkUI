@@ -18,7 +18,7 @@ export class NewHumiComponent {
   isValid: boolean = false;
 
   addHumi() {
-    this.apiService.addHumi(this.newHumiURL);
+    this.apiService.addHumi(this.newHumiURL, this.newHumiTitle);
     this.newHumiURL = '';
   }
 
